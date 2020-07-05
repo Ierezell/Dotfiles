@@ -1,0 +1,7 @@
+efibootmgr --disk /dev/nvme1n1 --part 1 --create --label "PedroArch" --loader /vmlinuz-linux --unicode 'root=PARTUUID=6e8a67e1-2eb8-46d1-a04a-9bd706a6070e rw initrd=\intel-ucode.img initrd=\initramfs-linux.img' --verbose
+
+
+
+
+
+

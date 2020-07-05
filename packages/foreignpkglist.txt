@@ -1,0 +1,4 @@
+base16-manager
+polybar
+visual-studio-code-insiders
+yay-git

@@ -1,0 +1,45 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.languageServer": "Microsoft",
+    "keyboard.dispatch": "keyCode",
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "E"
+            ],
+            "after": [
+                "$",
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "B"
+            ],
+            "commands": [
+                "^"
+            ]
+        }
+    ],
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-c>": false,
+        "<C-v>": false,
+        "<C-z>": false,
+        "<C-w>": false,
+        "<C-d>": false,
+        "<C-x>": false,
+    },
+    "files.autoSave": "onFocusChange",
+    "editor.formatOnSave": true,
+    "window.menuBarVisibility": "toggle"
+}
