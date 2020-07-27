@@ -109,5 +109,21 @@
     {
         "key": "ctrl+k ctrl+pagedown",
         "command": "-workbench.action.nextEditorInGroup"
+    },
+    {
+        "key": "ctrl+pagedown",
+        "command": "workbench.action.decreaseViewSize"
+    },
+    {
+        "key": "ctrl+pageup",
+        "command": "workbench.action.increaseViewSize"
+    },
+    {
+        "key": "ctrl+pagedown",
+        "command": "-workbench.action.nextEditor"
+    },
+    {
+        "key": "ctrl+pageup",
+        "command": "-workbench.action.previousEditor"
     }
 ]

@@ -1,11 +1,13 @@
 # Set monitors
-set $ecran DP-2
+set $ecran DP-2 
 set $ecran2 HDMI-0
 
 # Wallpapers
-exec_always feh --recursive --randomize --bg-max --no-xinerama --no-fehbg /mnt/Medias/Wallpapers/DualScreen/* &
-bindsym $mod+Ctrl+w exec feh --recursive --randomize --bg-max --no-xinerama --no-fehbg /mnt/Medias/Wallpapers/DualScreen/* &
+# exec_always feh --recursive --randomize --bg-max --no-xinerama --no-fehbg /mnt/Documents/Images/Wallpapers/1920_1080/* &
+# bindsym $mod+Ctrl+w exec feh --recursive --randomize --bg-max --no-xinerama --no-fehbg /mnt/Documents/Images/Wallpapers/1920_1080/* &
 
+exec_always feh --recursive --randomize --bg-max --no-fehbg /mnt/Documents/Images/Wallpapers/1920_1080/* &
+bindsym $mod+Ctrl+w exec feh --recursive --randomize --bg-max --no-fehbg /mnt/Documents/Images/Wallpapers/1920_1080/* &
 # Mod keys (window and alt)
 set $mod Mod4
 set $mod2 Mod1
@@ -28,10 +30,19 @@ bindsym $mod2+Return exec termite
 bindsym $mod+Shift+q kill
 bindsym $mod2+Shift+q kill
 
-bindsym $mod+d exec "rofi -combi-modi window,drun,ssh -theme material -show combi"
-bindsym $mod2+d exec "rofi -combi-modi window,drun,ssh -theme material -show combi"
-bindsym $mod+Tab exec rofi -theme material -show window 
-bindsym $mod2+Tab exec rofi -theme material -show window 
+bindsym $mod+d exec "rofi -combi-modi drun,ssh,window -theme material -show combi -terminal /usr/bin/termite"
+bindsym $mod2+d exec "rofi -combi-modi drun,ssh,window -theme material -show combi -terminal /usr/bin/termite"
+bindsym $mod+Tab exec "rofi -theme material -show window -terminal /usr/bin/termite" 
+bindsym $mod2+Tab exec "rofi -theme material -show window -terminal /usr/bin/termite"
+
+# Volume buttons
+bindsym XF86AudioRaiseVolume exec "amixer set Master -q 5%+"
+bindsym XF86AudioLowerVolume exec "amixer set Master -q 5%-"
+bindsym XF86AudioMute exec "amixer set Master toggle"
+
+# Brightness buttons
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # Start applications
 bindsym $mod+F2 exec opera
@@ -130,7 +141,7 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 "0"
 
 set $ws11 "11"
 set $ws12 "12"
@@ -141,7 +152,7 @@ set $ws16 "16"
 set $ws17 "17"
 set $ws18 "18"
 set $ws19 "19"
-set $ws20 "110"
+set $ws20 "20"
 
 # Set default workspace on screens. 
 workspace $ws1 output $ecran
@@ -226,12 +237,11 @@ bindsym $mod+Shift+e mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id /bin/lockscreen.sh ,mode "default" 
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -332,8 +342,8 @@ mode "$mode_gaps_outer" {
 ####################
 # Startup programs #
 ####################
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # exec --no-startup-id dbus-launch compton --config ~/.config/compton/compton.conf &
-exec --no-startup-id xrandr --output $ecran --auto --output $ecran2 --auto --left-of $ecran &
-exec --no-startup-id setxkbmap -option caps:swapescape &
+exec_always --no-startup-id xrandr --output $ecran --auto --output $ecran2 --auto --left-of $ecran &
+exec_always --no-startup-id setxkbmap -option caps:swapescape &
+exec_always --no-startup-id ~/.config/polybar/launch.sh &
 
