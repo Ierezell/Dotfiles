@@ -1,0 +1,106 @@
+###########
+# Exports #
+###########
+export PATH="${PATH}:${HOME}/.local/bin"
+export EDITOR='nvim'
+export VISUAL=$EDITOR
+export PAGER='less'
+export SHELL='/bin/zsh'
+export LANG='fr_FR.UTF-8'
+export LC_ALL='fr_FR.UTF-8'
+
+###########
+# Aliases #
+###########
+
+# CDs
+alias cdd='cd /mnt/Documents'
+alias cdp='cd /mnt/Documents/Projets'
+alias cdg='cd /mnt/Documents/Projets/git_clones'
+
+alias cdbp='cd /mnt/Documents/Projets/BotPress/botpress'
+alias cdrd='cd /mnt/Documents/Projets/BotPress/R_D'
+
+# Yarn starts
+alias ys='cd /mnt/Documents/Projets/BotPress/botpress && yarn start'
+alias ybp='cd /mnt/Documents/Projets/BotPress/botpress && GULP_PARALLEL=true yarn build'
+alias ybp='cd /mnt/Documents/Projets/BotPress/botpress && yarn build'
+alias ysls='cd /mnt/Documents/Projets/BotPress/botpress && yarn start lang --dim=300'
+alias ysduck='cd /mnt/Documents/Projets/git_clones/duckling && stack exec duckling-example-exe'
+alias ysnlu='cd /mnt/Documents/Projets/BotPress/botpress && yarn start nlu --languageURL=http://localhost:3100 --ducklingURL=http://localhost:8000/ --modelCacheSize=1gb  --body-size=900kb'
+
+# Commands 
+alias runpret="cd /mnt/Documents/Projets/BotPress/botpress && node ./node_modules/prettier/bin-prettier.js --check '{src,modules}/**/*.ts' '!**/*.d.ts'"
+alias ls="ls --color=auto"
+alias la="ls -a --color=auto"
+alias ll="ls -lh --color=auto"
+alias lla="ls -lha --color=auto"
+alias zshupdate="zinit self-update && zinit update"
+
+###########
+# History #
+###########
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_all_dups   # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+setopt share_history          # share command history data
+setopt inc_append_history     # add commands to HISTFILE in order of execution
+
+
+##############
+# Completion #
+##############
+zstyle ':completion:*' menu select
+zstyle ':completion:*' group-name '' # group results by category
+zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
+
+setopt auto_cd # cd by typing directory name if it's not a command
+setopt correct_all # autocorrect commands
+setopt auto_list # automatically list choices on ambiguous completion
+setopt auto_menu # automatically use menu completion
+setopt list_ambiguous         # complete as much of a completion until it gets ambiguous.
+setopt complete_in_word       # allow completion from within a word/phrase
+
+setopt promptsubst
+#########
+# Zinit #
+#########
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+
+# Load the pure theme, with zsh-async library that's bundled with it.
+zinit ice pick"async.zsh" src"pure.zsh"
+zinit light sindresorhus/pure
+
+zinit ice wait lucid 
+zinit snippet OMZL::git.zsh
+
+zinit ice wait lucid 
+zinit snippet OMZP::sudo 
+
+zinit ice wait lucid atload"unalias grv" 
+zinit snippet OMZP::git
+
+zinit ice wait lucid atload'_zsh_autosuggest_start'
+zinit light zsh-users/zsh-autosuggestions
+
+zinit wait"!" lucid light-mode atinit"zicompinit; zicdreplay" for \
+	zdharma/fast-syntax-highlighting \
+	zdharma/history-search-multi-word 
+
+zinit ice wait lucid blockf atpull'zinit creinstall -q .' 
+zinit light zsh-users/zsh-completions 
+
+# LS COLORS
+~/.cache/wal/colors.sh
+###########
+# Sources #
+###########
+# source /usr/share/nvm/init-nvm.sh

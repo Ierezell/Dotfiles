@@ -1,0 +1,118 @@
+{
+  "[typescript]": {
+    "editor.tabSize": 2
+  },
+  "[python]": {
+    "editor.tabSize": 4
+  },
+  "[json]": {
+    "editor.tabSize": 2
+  },
+  "workbench.iconTheme": "vscode-icons",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "python.languageServer": "Pylance",
+  "keyboard.dispatch": "keyCode",
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings": [],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["E"],
+      "after": ["$"]
+    },
+    {
+      "before": ["B"],
+      "after": ["^"]
+    },
+    { 
+      "before": ["<leader>", "p"], 
+      "after": ["\"", "0", "p"] 
+    },
+    { 
+      "before": ["<leader>", "d"], 
+      "after": ["\"", "_", "d"] 
+    }
+  ],
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false,
+    "<C-c>": false,
+    "<C-v>": false,
+    "<C-z>": false,
+    "<C-w>": false,
+    "<C-d>": false,
+    "<C-x>": false
+  },
+  "files.autoSave": "onFocusChange",
+  "window.menuBarVisibility": "toggle",
+  "workbench.colorTheme": "Monokai",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.lineNumbers": "relative",
+  "vim.highlightedyank.enable": true,
+  "vim.statusBarColorControl": true,
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#005f5f",
+    "statusBar.noFolderBackground": "#005f5f",
+    "statusBar.debuggingBackground": "#005f5f"
+  },
+  "vim.camelCaseMotion.enable": true,
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "todo-tree.tree.showScanModeButton": false,
+  "editor.fontLigatures": true, 
+  "vim.easymotionMarkerForegroundColorOneChar": "rgba(250, 0, 0, 0.7)",
+  "editor.minimap.enabled": false,
+  "python.showStartPage": false,
+  "extensions.ignoreRecommendations": false,
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "python.analysis.completeFunctionParens": true,
+  "python.analysis.typeCheckingMode": "strict",
+  "typescript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+  "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+  "typescript.format.placeOpenBraceOnNewLineForFunctions": true,
+  "javascript.format.placeOpenBraceOnNewLineForFunctions": true,
+  "autoDocstring.docstringFormat": "numpy",
+  "cSpell.userWords": [
+    "ROBOTSTXT",
+    "Texto",
+    "Textos",
+    "Unigram",
+    "bitfan",
+    "botpress",
+    "chatbots",
+    "coeff",
+    "corpuses",
+    "datas",
+    "fasttext",
+    "gouv",
+    "lematization",
+    "lowercasing",
+    "mindfuck",
+    "narcity",
+    "nltk",
+    "numpy",
+    "scrapy",
+    "skipgram",
+    "spacy",
+    "splited",
+    "stopwords",
+    "subtoken",
+    "subtokens",
+    "subword",
+    "subwords",
+    "tqdm",
+    "tweepy",
+    "vectorizing",
+    "whitespaces"
+  ],
+  "cSpell.language": "en,fr",
+  "editor.formatOnSave": true
+}
