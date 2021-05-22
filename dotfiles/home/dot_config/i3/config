@@ -62,6 +62,11 @@ bindsym XF86AudioMute exec "amixer set Master toggle"
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
 # Start applications
 bindsym $mod+F2 exec firefox
 bindsym $mod+F3 exec thunar
@@ -289,8 +294,6 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 bindsym $mod2+r mode "resize"
 
-# exec --no-startup-id xautolock -time 5 -locker betterlockscreen -u /mnt/media/Wallpapers -l blur -t ""
-#
 #I3 BAR SWITCHED FOR POLYBAR (keeping config for legacy)
 #Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -360,15 +363,16 @@ mode "$mode_gaps_outer" {
 ###########
 # Windows #
 ###########
-for_window [class="^.*"] border pixel 0 # Disable title bars
+for_window [class="^.*"] border pixel 1 # Disable title bars
 
 ####################
 # Startup programs #
 ####################
-# exec_always --no-startup-id feh --recursive --randomize --bg-max --no-fehbg /mnt/Documents/Images/Wallpapers/1920_1080/* &
-exec --no-startup-id setxkbmap -option caps:swapescape &
-exec --no-startup-id ~/.config/polybar/launch.sh &
-exec --no-startup-id picom & # Fading and transparency (check .config/picom)
-exec_always --no-startup-id wal -i /mnt/Documents/Images/Wallpapers/1920_1080 --saturate 0.4 
-exec_always --no-startup-id xrandr --output $ecran --auto --output $ecran2 --mode 1920x1080 --right-of $ecran &
-exec_always --no-startup-id python ~/.config/termite/change_colors.py
+# exec_always --no-startup-id feh --recursive --randomize --bg-max --no-fehbg /mnt/Documents/Images/Wallpapers/1920_1080/* & # Set the wallpaper (old way) now using pywal, just keeping for legacy
+exec setxkbmap -option caps:swapescape & # Swap ESC and MAJ
+exec_always --no-startup-id dunst &
+exec_always picom -b & # Fading and transparency (check .config/picom)
+# exec_always ~/.screenlayout/maison.sh
+exec_always xrandr --output $ecran --auto --output $ecran2 --mode 1920x1080 --left-of $ecran & # Place the second screen on the right of the laptop one
+exec_always ~/.config/polybar/launch.sh & # Launch the Bar
+exec_always wal -i /mnt/Documents/Images/Wallpapers/1920_1080 --saturate 0.6 & # Set wallpapers and all desktop color (from wallpaper colors)

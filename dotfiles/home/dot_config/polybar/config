@@ -87,10 +87,39 @@ label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
+
+[module/spotify]
+type = custom/script
+tail = true
+; prefix symbol is shown before the text
+format-prefix = "="
+format = <label>
+exec = /mnt/Documents/Projets/git_clones/polybar-spotify/scroll_spotify_status.sh
+
+[module/spotify-prev]
+type = custom/script
+exec = echo "<"
+format = <label>
+click-left = playerctl previous spotify
+
+[module/spotify-play-pause]
+type = custom/ipc
+hook-0 = echo ">"
+hook-1 = echo "||"
+initial = 1
+click-left = playerctl play-pause spotify
+
+[module/spotify-next]
+type = custom/script
+exec = echo ">"
+format = <label>
+click-left = playerctl next spotify
+
 [module/filesystem]
 type = internal/fs
 interval = 25
 mount-0 = /
+mount-1 = /mnt/Documents
 
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
@@ -372,109 +401,6 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
-
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
-
-[module/openweather]
-type = custom/script
-exec = ~/.config/polybar/scripts/openweather.sh
-interval = 600
-label-font = 3
-
-[module/previous]
-type = custom/script
-interval = 86400
-format = "%{T3}<label>"
-format-padding = 5
-; Previous song icon
-exec = echo ""
-; Check if spotify is running before displaying the icon
-exec-if = "pgrep spotify"
-format-underline = #1db954
-line-size = 1
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
-
-[module/next]
-type = custom/script
-interval = 86400
-format = "%{T3}<label>"
-format-padding = 5
-; Next song icon
-exec = echo ""
-; Check if spotify is running before displaying the icon
-exec-if = "pgrep spotify"
-format-underline = #1db954
-line-size = 1
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
-
-[module/playpause]
-type = custom/ipc
-; Default
-hook-0 = echo ""
-; Playing
-hook-1 = echo ""
-; Paused
-hook-2 = echo ""
-initial = 1
-format-underline = #1db954
-line-size = 1
-click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
-
-[module/spotify]
-type = custom/ipc
-hook-0 = echo ""
-hook-1 = python3 ~/.config/polybar/scripts/spotify/spotify_status.py
-initial = 1
-format-padding = 4
-format-underline = #1db954
-line-size = 1
-; [i3wm only] - Uncomment the below line to focus on Spotify when clicking on the song name (credits to https://github.com/Esya)
-click-left = i3-msg '[class="Spotify"] focus'
-
-[module/info-eyestrain]
-type = custom/script
-exec = ~/polybar-scripts/info-eyestrain.sh
-interval = 60
-
-[module/info-redshift-temp]
-type = custom/script
-exec = ~/polybar-scripts/info-redshift-temp.sh
-interval = 5
-
-[module/player-mpris-tail]
-type = custom/script
-exec = ~/polybar-scripts/player-mpris-tail.py -f '{icon} {:artist:t5:{artist}:}{:artist: - :}{:t4:{title}:}'
-tail = true
-click-left = ~/polybar-scripts/player-mpris-tail.py previous &
-click-right = ~/polybar-scripts/player-mpris-tail.py next &
-click-middle = ~/polybar-scripts/player-mpris-tail.py play-pause &
 
 [settings]
 screenchange-reload = true
